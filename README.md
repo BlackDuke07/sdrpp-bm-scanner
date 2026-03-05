@@ -1,16 +1,16 @@
-# Scanner++
+# BM Scanner
 
-`Scanner++` is an SDR++ plugin that scans bookmarks from the active Frequency Manager list.
+`BM Scanner` is an SDR++ Bookmark Scanner plugin that scans bookmarks from the active Frequency Manager list.
 
 ## Screenshots
 
 Scanner workflow / controls:
 
-![Scanner++ controls](assets/scannerpp-controls.png)
+![BM Scanner controls](assets/bm-scanner-controls.png)
 
 Scanner active scan state:
 
-![Scanner++ scanning](assets/scannerpp-scanning.png)
+![BM Scanner scanning](assets/bm-scanner-scanning.png)
 
 ## Features
 
@@ -29,11 +29,11 @@ Current behavior:
 
 ## Install
 
-Copy `scannerpp.dll` into your SDR++ `modules` folder and restart SDR++.
+Copy `bm_scanner.dll` into your SDR++ `modules` folder and restart SDR++.
 
 Typical Windows example:
 
-- `sdrpp_windows_x64\modules\scannerpp.dll`
+- `sdrpp_windows_x64\modules\bm_scanner.dll`
 
 ## Activate In SDR++
 
@@ -41,14 +41,14 @@ After copying the DLL into the `modules` folder:
 
 1. Start or restart SDR++.
 2. Open the left-side menu.
-3. Look for `Scanner++` in the module list.
+3. Look for `BM Scanner` in the module list.
 
 If it does not appear automatically:
 
 1. Open `Module Manager`.
 2. Add a new module instance.
-3. Set `Name` to `Scanner++`.
-4. Set `Type` to `scannerpp`.
+3. Set `Name` to `BM Scanner`.
+4. Set `Type` to `bm_scanner`.
 5. Enable the module.
 
 ## Build
@@ -56,15 +56,15 @@ If it does not appear automatically:
 Run:
 
 ```bat
-build-scannerpp.bat
+build-bm-scanner.bat
 ```
 
 Expected result:
 
-- `scannerpp.dll`
+- `bm_scanner.dll`
 
 ## Notes
 
 - This module does not require Spy Glass to run.
-- Scanner++ and Spy Glass are independent modules.
+- BM Scanner and Spy Glass are independent modules.
 - Tested against Windows SDR++ environments compatible with the included build script.

@@ -19,10 +19,10 @@
 #include <signal_path/vfo_manager.h>
 
 SDRPP_MOD_INFO{
-    /* Name:            */ "scannerpp",
-    /* Description:     */ "Bookmark scanner module for SDR++",
+    /* Name:            */ "bm_scanner",
+    /* Description:     */ "Bookmark Scanner module for SDR++",
     /* Author:          */ "BlackDuke07",
-    /* Version:         */ 0, 1, 3,
+    /* Version:         */ 0, 2, 0,
     /* Max instances    */ 1
 };
 
@@ -45,9 +45,9 @@ namespace {
 
     ConfigManager moduleConfig;
 
-    class ScannerPPModule : public ModuleManager::Instance {
+    class BMScannerModule : public ModuleManager::Instance {
     public:
-        explicit ScannerPPModule(std::string instanceName)
+        explicit BMScannerModule(std::string instanceName)
             : name_(std::move(instanceName)) {
             moduleConfig.acquire();
             snrThresholdDb_ = moduleConfig.conf.contains("snrThresholdDb")
@@ -70,7 +70,7 @@ namespace {
             gui::menu.registerEntry(name_, drawMenu, this, NULL);
         }
 
-        ~ScannerPPModule() override {
+        ~BMScannerModule() override {
             stopScan(true);
             gui::menu.removeEntry(name_);
         }
@@ -92,7 +92,7 @@ namespace {
 
     private:
         static void drawMenu(void* ctx) {
-            auto* self = static_cast<ScannerPPModule*>(ctx);
+            auto* self = static_cast<BMScannerModule*>(ctx);
             self->draw();
         }
 
@@ -486,17 +486,17 @@ MOD_EXPORT void _INIT_() {
     def["onlyVisible"] = false;
     def["showTopOverlay"] = true;
 
-    moduleConfig.setPath(core::args["root"].s() + "/scannerpp_config.json");
+    moduleConfig.setPath(core::args["root"].s() + "/bm_scanner_config.json");
     moduleConfig.load(def);
     moduleConfig.enableAutoSave();
 }
 
 MOD_EXPORT ModuleManager::Instance* _CREATE_INSTANCE_(std::string name) {
-    return new ScannerPPModule(std::move(name));
+    return new BMScannerModule(std::move(name));
 }
 
 MOD_EXPORT void _DELETE_INSTANCE_(void* instance) {
-    delete (ScannerPPModule*)instance;
+    delete (BMScannerModule*)instance;
 }
 
 MOD_EXPORT void _END_() {

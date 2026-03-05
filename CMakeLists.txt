@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(sdrpp_scannerpp LANGUAGES CXX)
+project(sdrpp_bm_scanner LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -14,21 +14,21 @@ endif()
 
 set(SDRPP_CORE_SRC "${SDRPP_SOURCE_DIR}/core/src")
 
-add_library(scannerpp SHARED
+add_library(bm_scanner SHARED
     src/main.cpp
 )
 
-target_include_directories(scannerpp PRIVATE
+target_include_directories(bm_scanner PRIVATE
     "${SDRPP_CORE_SRC}"
 )
 
-target_link_directories(scannerpp PRIVATE
+target_link_directories(bm_scanner PRIVATE
     "${SDRPP_SOURCE_DIR}/build"
     "${SDRPP_SOURCE_DIR}/build/core"
 )
 
-target_link_libraries(scannerpp PRIVATE sdrpp_core)
+target_link_libraries(bm_scanner PRIVATE sdrpp_core)
 
-set_target_properties(scannerpp PROPERTIES
-    OUTPUT_NAME "scannerpp"
+set_target_properties(bm_scanner PROPERTIES
+    OUTPUT_NAME "bm_scanner"
 )

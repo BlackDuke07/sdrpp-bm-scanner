@@ -2,7 +2,7 @@
 setlocal
 
 set "VSDEVCMD=C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\VsDevCmd.bat"
-set "ROOT=D:\GitHub\sdrpp-scannerpp"
+set "ROOT=D:\GitHub\sdrpp-bm-scanner"
 set "SRC=%ROOT%\src\main.cpp"
 set "BUILD=%ROOT%\build"
 set "CORE_SRC=D:\SDRpp_source\core\src"
@@ -17,7 +17,7 @@ cl /std:c++17 /EHsc /LD ^
   /I"%CORE_SRC%" ^
   /I"%CORE_SRC%\imgui" ^
   /Fo"%BUILD%\\" ^
-  /Fe"%BUILD%\scannerpp.dll" ^
+  /Fe"%BUILD%\bm_scanner.dll" ^
   "%SRC%" ^
   /link /LIBPATH:"%BUILD%" sdrpp_core.lib || exit /b 1
 
