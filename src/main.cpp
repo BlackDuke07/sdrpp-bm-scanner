@@ -22,7 +22,7 @@ SDRPP_MOD_INFO{
     /* Name:            */ "bm_scanner",
     /* Description:     */ "Bookmark Scanner module for SDR++",
     /* Author:          */ "BlackDuke07",
-    /* Version:         */ 0, 2, 0,
+    /* Version:         */ 0, 2, 1,
     /* Max instances    */ 1
 };
 
@@ -51,7 +51,7 @@ namespace {
             : name_(std::move(instanceName)) {
             moduleConfig.acquire();
             snrThresholdDb_ = moduleConfig.conf.contains("snrThresholdDb")
-                ? std::clamp(static_cast<int>(std::lround(static_cast<double>(moduleConfig.conf["snrThresholdDb"]))), 0, 30)
+                ? std::clamp(static_cast<int>(std::lround(static_cast<double>(moduleConfig.conf["snrThresholdDb"]))), 0, 60)
                 : 8;
             resumeDelaySec_ = moduleConfig.conf.contains("resumeDelaySec")
                 ? std::clamp(static_cast<int>(moduleConfig.conf["resumeDelaySec"]), 0, 5)
@@ -140,7 +140,7 @@ namespace {
             ImGui::Text("State: %s", currentStateText().c_str());
 
             ImGui::Separator();
-            if (ImGui::SliderInt("Lock SNR (dB)", &snrThresholdDb_, 0, 30)) {
+            if (ImGui::SliderInt("Lock SNR (dB)", &snrThresholdDb_, 0, 60)) {
                 persistSettings();
             }
             if (ImGui::SliderInt("Resume Delay (s)", &resumeDelaySec_, 0, 5)) {
